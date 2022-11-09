@@ -1,4 +1,5 @@
-﻿using EmployeeService.Models;
+﻿using EmployeeService.Data;
+using EmployeeService.Models;
 using EmployeeService.Models.Requests;
 using EmployeeService.Services;
 using EmployeeService.Services.Impl;
@@ -23,7 +24,7 @@ namespace EmployeeService.Controllers
         [HttpPost("employee/create")]
         public IActionResult CreateEmployee([FromBody] CreateEmployeeRequest request)
         {
-            return Ok(_employeeReposytory.Create(new Models.Employee 
+            return Ok(_employeeReposytory.Create(new Employee 
             {
                 Id = request.Id,
                 DepartmentId = request.DepartmentId,

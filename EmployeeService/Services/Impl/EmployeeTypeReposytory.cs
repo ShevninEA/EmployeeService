@@ -1,32 +1,60 @@
-﻿using EmployeeService.Models;
+﻿using EmployeeService.Data;
+using EmployeeService.Models;
 
 namespace EmployeeService.Services.Impl
 {
     public class EmployeeTypeReposytory : IEmployeeTypeReposytory
     {
+        #region Services
+
+        private readonly EmployeeServiceDbContext _context;
+
+        #endregion
+
+        public EmployeeTypeReposytory(EmployeeServiceDbContext context)
+        {
+            _context = context;
+        }
+
         public int Create(EmployeeType data)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<EmployeeType> GetAll()
-        {
-            throw new NotImplementedException();
+            _context.EmployeeTypes.Add(data);
+            _context.SaveChanges();
+            return data.Id;
         }
 
         public EmployeeType GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.EmployeeTypes.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(EmployeeType data)
+        public bool Update(EmployeeType data)
         {
-            throw new NotImplementedException();
+            EmployeeType employeeType = GetById(data.Id);
+            if (employeeType != null)
+            {
+                employeeType.Description = data.Description;
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool Delete(int id)
+        {
+            EmployeeType employeeType = GetById(id);
+            if (employeeType != null) 
+            {
+                _context.EmployeeTypes.Remove(employeeType);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public IList<EmployeeType> GetAll()
+        {
+            return _context.EmployeeTypes.ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using EmployeeService.Models;
+﻿using EmployeeService.Data;
+using EmployeeService.Models;
 
 namespace EmployeeService.Services.Impl
 {
@@ -9,12 +10,12 @@ namespace EmployeeService.Services.Impl
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Employee> GetAll()
+        public IList<Employee> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -24,7 +25,7 @@ namespace EmployeeService.Services.Impl
             throw new NotImplementedException();
         }
 
-        public void Update(Employee data)
+        public bool Update(Employee data)
         {
             throw new NotImplementedException();
         }

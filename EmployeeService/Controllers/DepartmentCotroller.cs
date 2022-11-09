@@ -4,6 +4,7 @@ using EmployeeService.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EmployeeService.Services.Impl;
+using EmployeeService.Data;
 
 namespace EmployeeService.Controllers
 {
@@ -23,7 +24,7 @@ namespace EmployeeService.Controllers
         [HttpPost("department/create")]
         public IActionResult CreateDepartmetn([FromBody] CreateDepartmentRequest request)
         {
-            return Ok(_departmentReposytory.Create(new Models.Department
+            return Ok(_departmentReposytory.Create(new Department
             {
                 Id = request.Id,
                 Description = request.Description
@@ -37,13 +38,13 @@ namespace EmployeeService.Controllers
         }
 
         [HttpGet("department/get/{id}")]
-        public IActionResult GetByIdDepartment([FromRoute] Guid id)
+        public IActionResult GetByIdDepartment([FromRoute] int id)
         {
             return Ok(_departmentReposytory.GetById(id));
         }
 
         [HttpDelete("department/delete/{id}")]
-        public IActionResult DeleteDepartment([FromRoute] Guid id)
+        public IActionResult DeleteDepartment([FromRoute] int id)
         {
             _departmentReposytory.Delete(id);
             return Ok();
