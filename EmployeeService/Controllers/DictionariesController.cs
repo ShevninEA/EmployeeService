@@ -42,7 +42,7 @@ namespace EmployeeService.Controllers
                 ).ToList());
         }
 
-        [HttpGet("employee-types/get")]
+        [HttpGet("employee-types/get-id")]
         public IActionResult GetByIdEmployeeTypes([FromQuery] int id)
         {
             return Ok(_employeeTypeReposytory.GetById(id));

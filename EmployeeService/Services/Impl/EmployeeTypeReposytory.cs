@@ -1,5 +1,6 @@
 ﻿using EmployeeService.Data;
 using EmployeeService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeService.Services.Impl
 {
@@ -7,25 +8,25 @@ namespace EmployeeService.Services.Impl
     {
         #region Services
 
-        private readonly EmployeeServiceDbContext _context;
+        private readonly EmployeeServiceDbContext _dbContext;
 
         #endregion
 
-        public EmployeeTypeReposytory(EmployeeServiceDbContext context)
+        public EmployeeTypeReposytory(EmployeeServiceDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
 
         public int Create(EmployeeType data)
         {
-            _context.EmployeeTypes.Add(data);
-            _context.SaveChanges();
+            _dbContext.EmployeeTypes.Add(data);
+            _dbContext.SaveChanges();
             return data.Id;
         }
 
         public EmployeeType GetById(int id)
         {
-            return _context.EmployeeTypes.FirstOrDefault(x => x.Id == id);
+            return _dbContext.EmployeeTypes.FirstOrDefault(x => x.Id == id);
         }
 
         public bool Update(EmployeeType data)
@@ -34,7 +35,7 @@ namespace EmployeeService.Services.Impl
             if (employeeType != null)
             {
                 employeeType.Description = data.Description;
-                _context.SaveChanges();
+                _dbContext.SaveChanges();
                 return true;
             }
             return false;
@@ -45,8 +46,8 @@ namespace EmployeeService.Services.Impl
             EmployeeType employeeType = GetById(id);
             if (employeeType != null) 
             {
-                _context.EmployeeTypes.Remove(employeeType);
-                _context.SaveChanges();
+                _dbContext.EmployeeTypes.Remove(employeeType);
+                _dbContext.SaveChanges();
                 return true;
             }
             return false;
@@ -54,7 +55,7 @@ namespace EmployeeService.Services.Impl
 
         public IList<EmployeeType> GetAll()
         {
-            return _context.EmployeeTypes.ToList();
+            return _dbContext.EmployeeTypes.ToList();
         }
     }
 }
