@@ -1,5 +1,9 @@
+using EmployeeService.Data;
 using EmployeeService.Services;
 using EmployeeService.Services.Impl;
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 
 namespace EmployeeService
 {
@@ -11,11 +15,43 @@ namespace EmployeeService
 
             // Add services to the container.
 
+            #region Configure Logging Services
+
+            builder.Services.AddHttpLogging(logging =>
+            {
+                logging.LoggingFields = HttpLoggingFields.All | HttpLoggingFields.RequestQuery;
+                logging.RequestBodyLogLimit = 4096;
+                logging.ResponseBodyLogLimit = 4096;
+                logging.RequestHeaders.Add("Authorization");
+                logging.RequestHeaders.Add("X-Real-IP");
+                logging.RequestHeaders.Add("X-Forwarded-For");
+            });
+
+            builder.Host.ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddConsole();
+
+            }).UseNLog(new NLogAspNetCoreOptions() { RemoveLoggerFactoryFilter = true });
+
+            #endregion
+
+
             #region Services
 
             builder.Services.AddScoped<IEmployeeReposytory, EmployeeReposytory>();
             builder.Services.AddScoped<IDepartmentReposytory, DepartmentReposytory>();
             builder.Services.AddScoped<IEmployeeTypeReposytory, EmployeeTypeReposytory>();
+
+            #endregion
+
+            #region Configure EF DBContext Service (EmployeeDatabase Database)
+
+            // Scoped
+            builder.Services.AddDbContext<EmployeeServiceDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration["Settings:DatabaseOptions:ConnectionString"]);
+            });
 
             #endregion
 
@@ -34,7 +70,6 @@ namespace EmployeeService
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

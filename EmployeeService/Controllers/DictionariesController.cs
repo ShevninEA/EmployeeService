@@ -1,4 +1,5 @@
-﻿using EmployeeService.Models;
+﻿using EmployeeService.Data;
+using EmployeeService.Models;
 using EmployeeService.Models.Requests;
 using EmployeeService.Services;
 using EmployeeService.Services.Impl;
@@ -21,36 +22,40 @@ namespace EmployeeService.Controllers
         }
 
         [HttpPost("employee-types/create")]
-        public IActionResult CreateEmployeeTypes([FromBody] CreateEmployeeTypeRequest request)
+        public ActionResult<int> CreateEmployeeType([FromQuery] string description)
         {
-            return Ok(_employeeTypeReposytory.Create(new Models.EmployeeType 
+            return Ok(_employeeTypeReposytory.Create(new EmployeeType
             {
-                Id = request.Id,
-                Description = request.Description
+                Description = description
             }));
         }
 
         [HttpGet("employee-types/getall")]
-        public IActionResult GetAllEmployeeTypes()
+        public ActionResult<IList<CreateEmployeeTypeRequest>> GetAllEmployeeTypes()
         {
-            return Ok(_employeeTypeReposytory.GetAll());
+            return Ok(_employeeTypeReposytory.GetAll().Select(et =>
+                new CreateEmployeeTypeRequest
+                {
+                    Id = et.Id,
+                    Description = et.Description
+                }
+                ).ToList());
         }
 
-        [HttpGet("employee-types/get/{id}")]
-        public IActionResult GetByIdEmployeeTypes([FromRoute] int id)
+        [HttpGet("employee-types/get-id")]
+        public IActionResult GetByIdEmployeeTypes([FromQuery] int id)
         {
             return Ok(_employeeTypeReposytory.GetById(id));
         }
 
-        [HttpDelete("employee-types/delete/{id}")]
-        public IActionResult DeleteEmployeeTypes([FromRoute] int id)
+        [HttpDelete("employee-types/delete")]
+        public ActionResult<bool> DeleteEmployeeType([FromQuery] int id)
         {
-            _employeeTypeReposytory.Delete(id);
-            return Ok();
+            return Ok(_employeeTypeReposytory.Delete(id));
         }
 
         [HttpPut("employee-types/update")]
-        public IActionResult UpdateEmployeeTypes([FromBody] EmployeeType item)
+        public ActionResult<bool> UpdateEmployeeTypes([FromQuery] EmployeeType item)
         {
             _employeeTypeReposytory.Update(item);
             return Ok();

@@ -1,32 +1,57 @@
-﻿using EmployeeService.Models;
+﻿using EmployeeService.Data;
+using EmployeeService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeService.Services.Impl
 {
     public class DepartmentReposytory : IDepartmentReposytory
     {
+        private readonly EmployeeServiceDbContext _dbContext;
+
+        public DepartmentReposytory(EmployeeServiceDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public int Create(Department data)
         {
-            throw new NotImplementedException();
+            _dbContext.Departments.Add(data);
+            _dbContext.SaveChanges();
+            return data.Id;
         }
 
-        public void Delete(Guid id)
+        public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Department department = GetById(id);
+            if (department != null)
+            {
+                _dbContext.Departments.Remove(department);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
-        public List<Department> GetAll()
+        public IList<Department> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.Departments.ToList();
         }
 
-        public Department GetById(Guid id)
+        public Department GetById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Departments.FirstOrDefault(et => et.Id == id);
         }
 
-        public void Update(Department data)
+        public bool Update(Department data)
         {
-            throw new NotImplementedException();
+            Department department = GetById(data.Id);
+            if (department != null)
+            {
+                department.Description = data.Description;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
