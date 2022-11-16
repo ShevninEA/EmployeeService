@@ -5,7 +5,11 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService", "EmployeeService\EmployeeService.csproj", "{0D73C83B-4010-47E6-BF97-293A917D03D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeService.Data", "EmployeeService.Data\EmployeeService.Data.csproj", "{7C2F3D80-8687-45DC-A999-F16BBA5A410D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService.Data", "EmployeeService.Data\EmployeeService.Data.csproj", "{7C2F3D80-8687-45DC-A999-F16BBA5A410D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountHelper", "AccountHelper\AccountHelper.csproj", "{F0D62654-F798-409F-9720-C5B5BEDE36C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtSample", "JwtSample\JwtSample.csproj", "{976FCA8F-F052-40F9-B5A2-801DDA09E032}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{7C2F3D80-8687-45DC-A999-F16BBA5A410D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C2F3D80-8687-45DC-A999-F16BBA5A410D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C2F3D80-8687-45DC-A999-F16BBA5A410D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D62654-F798-409F-9720-C5B5BEDE36C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D62654-F798-409F-9720-C5B5BEDE36C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D62654-F798-409F-9720-C5B5BEDE36C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D62654-F798-409F-9720-C5B5BEDE36C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976FCA8F-F052-40F9-B5A2-801DDA09E032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976FCA8F-F052-40F9-B5A2-801DDA09E032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976FCA8F-F052-40F9-B5A2-801DDA09E032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976FCA8F-F052-40F9-B5A2-801DDA09E032}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
