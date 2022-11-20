@@ -5,7 +5,7 @@ namespace EmployeeService.Services
 {
     public interface IAuthentificateService
     {
-        AuthentificationResponse Login(AuthentificationRequest authentificationResponse);
+        AuthentificationResponse Login(AuthentificationRequest authentificationRequest);
         public SessionDto GetSession(string sessionToken);
     }
 }
