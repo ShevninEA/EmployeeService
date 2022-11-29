@@ -36,9 +36,14 @@ namespace EmployeeService
 
             #endregion
 
-            #region Services
+            #region Configure Service
 
             builder.Services.AddSingleton<IAuthentificateService, AuthentificateService>();
+
+            #endregion
+
+            #region Configure Repository
+
             builder.Services.AddScoped<IEmployeeReposytory, EmployeeReposytory>();
             builder.Services.AddScoped<IDepartmentReposytory, DepartmentReposytory>();
             builder.Services.AddScoped<IEmployeeTypeReposytory, EmployeeTypeReposytory>();
