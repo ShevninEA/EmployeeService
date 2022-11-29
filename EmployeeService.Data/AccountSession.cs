@@ -30,7 +30,6 @@ namespace EmployeeService.Data
         [Column(TypeName = "datetime2")]
         public DateTime? TimeClosed { get; set; }
 
-
         public virtual Account Account { get; set; }
     }
 }

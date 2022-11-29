@@ -13,7 +13,6 @@ namespace JwtSample
     {
         private const string SecretCode = "kYp3s6v9y/B?E(H+";
 
-
         private IDictionary<string, string> _users = new Dictionary<string, string>()
         {
             { "user1", "password" }, // 0
@@ -43,9 +42,6 @@ namespace JwtSample
                 }
                 i++;
             }
-
-
-
             return string.Empty;
         }
 

@@ -36,9 +36,9 @@ namespace EmployeeService
 
             #endregion
 
-
             #region Services
 
+            builder.Services.AddSingleton<IAuthentificateService, AuthentificateService>();
             builder.Services.AddScoped<IEmployeeReposytory, EmployeeReposytory>();
             builder.Services.AddScoped<IDepartmentReposytory, DepartmentReposytory>();
             builder.Services.AddScoped<IEmployeeTypeReposytory, EmployeeTypeReposytory>();
