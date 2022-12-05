@@ -3,6 +3,7 @@ using EmployeeService.Models;
 using EmployeeService.Models.Requests;
 using EmployeeService.Services;
 using EmployeeService.Services.Impl;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace EmployeeService.Controllers
     /// <summary>
     /// Работает с EmployeeType
     /// </summary>
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class DictionariesController : ControllerBase

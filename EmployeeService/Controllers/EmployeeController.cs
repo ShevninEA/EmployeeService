@@ -4,6 +4,9 @@ using EmployeeService.Models;
 using EmployeeService.Models.Requests;
 using EmployeeService.Services;
 using EmployeeService.Services.Impl;
+using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,19 +15,29 @@ namespace EmployeeService.Controllers
     /// <summary>
     /// Работает с Employee
     /// </summary>
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeReposytory _employeeReposytory;
-        public EmployeeController(IEmployeeReposytory employeeReposytory)
+        private readonly IValidator<CreateEmployeeRequest> _createEmployeeRequestValidator;
+        public EmployeeController(IEmployeeReposytory employeeReposytory, 
+            IValidator<CreateEmployeeRequest> createEmployeeRequestValidator)
         {
+            _createEmployeeRequestValidator = createEmployeeRequestValidator;
             _employeeReposytory = employeeReposytory;
         }
 
+        [ProducesResponseType(typeof(IDictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         [HttpPost("employee/create")]
         public ActionResult<int> CreateEmployee([FromQuery] CreateEmployeeRequest request)
         {
+            ValidationResult validationResult = _createEmployeeRequestValidator.Validate(request);
+
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.ToDictionary());
+
             return Ok(_employeeReposytory.Create(new Employee
             {
                 DepartmentId = request.DepartmentId,

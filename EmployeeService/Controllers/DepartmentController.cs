@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EmployeeService.Services.Impl;
 using EmployeeService.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeService.Controllers
 {
     /// <summary>
     /// Работает с Department
     /// </summary>
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class DepartmentController : ControllerBase
