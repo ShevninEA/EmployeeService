@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace EmployeeService.Models.Validators
 {
-    public class CreateEmployeeRequestValidator : AbstractValidator<CreateEmployeeRequest>
+    public class CreateEmployeeRequestValidator : AbstractValidator<CreateEmployeeRequests>
     {
         public CreateEmployeeRequestValidator()
         {

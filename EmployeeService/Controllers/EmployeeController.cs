@@ -21,9 +21,9 @@ namespace EmployeeService.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeReposytory _employeeReposytory;
-        private readonly IValidator<CreateEmployeeRequest> _createEmployeeRequestValidator;
+        private readonly IValidator<CreateEmployeeRequests> _createEmployeeRequestValidator;
         public EmployeeController(IEmployeeReposytory employeeReposytory, 
-            IValidator<CreateEmployeeRequest> createEmployeeRequestValidator)
+            IValidator<CreateEmployeeRequests> createEmployeeRequestValidator)
         {
             _createEmployeeRequestValidator = createEmployeeRequestValidator;
             _employeeReposytory = employeeReposytory;
@@ -31,7 +31,7 @@ namespace EmployeeService.Controllers
 
         [ProducesResponseType(typeof(IDictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         [HttpPost("employee/create")]
-        public ActionResult<int> CreateEmployee([FromQuery] CreateEmployeeRequest request)
+        public ActionResult<int> CreateEmployee([FromQuery] CreateEmployeeRequests request)
         {
             ValidationResult validationResult = _createEmployeeRequestValidator.Validate(request);
 
@@ -50,10 +50,10 @@ namespace EmployeeService.Controllers
         }
 
         [HttpGet("employee/getall")]
-        public ActionResult<IList<CreateEmployeeRequest>> GetAllEmployee()
+        public ActionResult<IList<CreateEmployeeRequests>> GetAllEmployee()
         {
             return Ok(_employeeReposytory.GetAll().Select(et =>
-                new CreateEmployeeRequest
+                new CreateEmployeeRequests
                 {
                     Id = et.Id,
                     DepartmentId = et.DepartmentId,

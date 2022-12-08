@@ -33,10 +33,10 @@ namespace EmployeeService.Controllers
         }
 
         [HttpGet("employee-types/getall")]
-        public ActionResult<IList<CreateEmployeeTypeRequest>> GetAllEmployeeTypes()
+        public ActionResult<IList<CreateEmployeeTypeRequests>> GetAllEmployeeTypes()
         {
             return Ok(_employeeTypeReposytory.GetAll().Select(et =>
-                new CreateEmployeeTypeRequest
+                new CreateEmployeeTypeRequests
                 {
                     Id = et.Id,
                     Description = et.Description

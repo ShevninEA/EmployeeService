@@ -33,10 +33,10 @@ namespace EmployeeService.Controllers
         }
 
         [HttpGet("department/getall")]
-        public ActionResult<IList<CreateDepartmentRequest>> GetAllDepartment()
+        public ActionResult<IList<CreateDepartmentRequests>> GetAllDepartment()
         {
             return Ok(_departmentReposytory.GetAll().Select(et =>
-                new CreateDepartmentRequest
+                new CreateDepartmentRequests
                 {
                     Id = et.Id,
                     Description = et.Description
