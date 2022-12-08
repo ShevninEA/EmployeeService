@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using EmployeeService.Services.Impl;
 using EmployeeService.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeService.Controllers
 {
     /// <summary>
     /// Работает с Department
     /// </summary>
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class DepartmentController : ControllerBase
@@ -31,10 +33,10 @@ namespace EmployeeService.Controllers
         }
 
         [HttpGet("department/getall")]
-        public ActionResult<IList<CreateDepartmentRequest>> GetAllDepartment()
+        public ActionResult<IList<CreateDepartmentRequests>> GetAllDepartment()
         {
             return Ok(_departmentReposytory.GetAll().Select(et =>
-                new CreateDepartmentRequest
+                new CreateDepartmentRequests
                 {
                     Id = et.Id,
                     Description = et.Description

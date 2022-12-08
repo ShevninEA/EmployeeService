@@ -118,7 +118,36 @@ namespace EmployeeService.Services.Impl
         }
         public SessionDto GetSession(string sessionToken)
         {
-            throw new NotImplementedException();
+            SessionDto sessionDto;
+            lock (_session)
+            {
+                _session.TryGetValue(sessionToken, out sessionDto);
+            }
+
+            if (sessionDto == null)
+            {
+                using IServiceScope scope = _serviceScopeFactory.CreateScope();
+                EmployeeServiceDbContext context = scope.ServiceProvider.GetRequiredService<EmployeeServiceDbContext>();
+
+                AccountSession session = context
+                    .AccountSession
+                    .FirstOrDefault(item => item.SessionToken == sessionToken);
+
+                if (session == null)
+                    return null;
+
+                Account account = context.Account.FirstOrDefault(item => item.AccountId == session.AccountId);
+                sessionDto = GetSessionDto(account, session);
+
+                if (sessionDto != null)
+                {
+                    lock (_session)
+                    {
+                        _session[sessionToken] = sessionDto;
+                    }
+                }
+            }
+            return sessionDto;
         }
     }
 }
