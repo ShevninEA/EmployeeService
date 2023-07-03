@@ -1,6 +1,6 @@
 ﻿namespace EmployeeService.Models.Requests
 {
-    public class CreateEmployeeRequest
+    public class CreateEmployeeRequests
     {
         public int Id { get; set; } //Идентификатор
         public int DepartmentId { get; set; } //Идентификатор департамента, к которому он пренадлежит (определенный класс рабочих)

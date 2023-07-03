@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService", "Employee
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService.Data", "EmployeeService.Data\EmployeeService.Data.csproj", "{7C2F3D80-8687-45DC-A999-F16BBA5A410D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountHelper", "AccountHelper\AccountHelper.csproj", "{F0D62654-F798-409F-9720-C5B5BEDE36C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountHelper", "AccountHelper\AccountHelper.csproj", "{F0D62654-F798-409F-9720-C5B5BEDE36C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtSample", "JwtSample\JwtSample.csproj", "{976FCA8F-F052-40F9-B5A2-801DDA09E032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtSample", "JwtSample\JwtSample.csproj", "{976FCA8F-F052-40F9-B5A2-801DDA09E032}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EployeeClient", "EployeeClient\EployeeClient.csproj", "{F1982519-968E-415E-B65E-EE86B4F1D497}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{976FCA8F-F052-40F9-B5A2-801DDA09E032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{976FCA8F-F052-40F9-B5A2-801DDA09E032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{976FCA8F-F052-40F9-B5A2-801DDA09E032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1982519-968E-415E-B65E-EE86B4F1D497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1982519-968E-415E-B65E-EE86B4F1D497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1982519-968E-415E-B65E-EE86B4F1D497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1982519-968E-415E-B65E-EE86B4F1D497}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

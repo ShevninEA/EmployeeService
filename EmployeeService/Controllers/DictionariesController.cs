@@ -3,6 +3,7 @@ using EmployeeService.Models;
 using EmployeeService.Models.Requests;
 using EmployeeService.Services;
 using EmployeeService.Services.Impl;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace EmployeeService.Controllers
     /// <summary>
     /// Работает с EmployeeType
     /// </summary>
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class DictionariesController : ControllerBase
@@ -31,10 +33,10 @@ namespace EmployeeService.Controllers
         }
 
         [HttpGet("employee-types/getall")]
-        public ActionResult<IList<CreateEmployeeTypeRequest>> GetAllEmployeeTypes()
+        public ActionResult<IList<CreateEmployeeTypeRequests>> GetAllEmployeeTypes()
         {
             return Ok(_employeeTypeReposytory.GetAll().Select(et =>
-                new CreateEmployeeTypeRequest
+                new CreateEmployeeTypeRequests
                 {
                     Id = et.Id,
                     Description = et.Description
